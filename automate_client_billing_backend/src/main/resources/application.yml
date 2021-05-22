@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    url : "jdbc:postgresql://34.93.210.170:5432/automateclient"
+    username: "automate"
+    password: "7UEH@uerh1"
+    driverClassName: "org.postgresql.Driver"
+  jpa:
+    hibernate:
+      ddl-auto: "update"
+    show-sql: true
+  cloud:
+    gcp:
+      sql:
+        enabled: true
+        instance-connection-name: "${DB_CLOUD_SQL:hu18-groupa-java:asia-southeast2:hu-sql-java}"
+        database-name: "automateclient"

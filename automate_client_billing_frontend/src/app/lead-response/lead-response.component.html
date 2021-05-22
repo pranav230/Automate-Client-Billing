@@ -1,0 +1,62 @@
+<ngx-spinner type="ball-spin-clockwise-fade" size="medium"></ngx-spinner>
+<app-header></app-header>
+
+<div class="lead-main-div">
+
+  <div class="lead-panel-header">
+  </div>
+  <div class="main-header">
+      <div class="header-custom">
+        Team Lead Responses
+      </div>
+  </div>
+  <div class="lead-upper-lower-panel">
+    <div class="filter">
+      <div class="left">
+        <input type="month" id="start" name="start" class="broad bar1"
+          min="2010-03" max="{{calender}}" [(ngModel)]="calenderValue">
+        <button type="button" (click)="loadPageAccordingMonth()" class="btn btn-dark bar">Sort</button>
+      </div>
+      <div class="right1">
+        <div class="input-group inp1">
+          <input type="search" [(ngModel)]="searchValue" (ngModelChange)="boxChangeRequired(searchValue)" class="form-control rounded broad bar1" placeholder="Search..." aria-label="Search"
+            aria-describedby="search-addon" />
+          <button type="button" class="btn btn-dark bar">Search</button>
+        </div>
+      </div>
+    </div>
+    <div class="lead-lower-panel" >
+      <div class="box" *ngIf="approvedValue!=false">
+        <div class="title-head">
+          Approved
+        </div>
+        <div>
+          <app-lead-response-approved *ngFor="let item of  filterItemsOfType('Approved') | filter:searchValue" [info]="item" [month]="month" [year]="year"
+          [routerLink]="['/response/'+item.projectID+'/'+month+'/'+year]"
+          ></app-lead-response-approved>
+        </div>
+      </div>
+      <div class="box"  *ngIf="pendingValue!=false">
+        <div class="title-head">
+          Pending
+        </div>
+        <div>
+          <app-lead-response-pending *ngFor="let item of  filterItemsOfType('Pending') | filter:searchValue" [info]="item" [month]="month" [year]="year" [routerLink]="['/response/'+item.projectID+'/'+month+'/'+year]"></app-lead-response-pending>
+        </div>
+      </div>
+      <!-- <div class="box"  *ngIf="rejectedValue!=false">
+        <div class="title-head">
+          Rejected
+        </div>
+        <div>
+          <app-lead-response-rejected *ngFor="let item of  filterItemsOfType('Rejected') | filter:searchValue" [info]="item" [month]="month" [year]="year" [routerLink]="['/response/'+item.projectID+'/'+month+'/'+year]"></app-lead-response-rejected>
+        </div>
+      </div> -->
+    </div>
+    <footer class="bg-light text-center text-lg-start">
+      <div class="text-center p-3" style="background-color: white;">
+        © 2021 Copyright:
+        <a class="text-dark" href="https://hashedin.com/">Hashedin.com</a>
+      </div>
+    </footer>
+</div>

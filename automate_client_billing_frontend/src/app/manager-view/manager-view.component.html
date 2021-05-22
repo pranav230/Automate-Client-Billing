@@ -1,0 +1,218 @@
+<ngx-spinner type="ball-spin-clockwise-fade" size="medium"></ngx-spinner>
+<div *ngIf="configData.teamleadStatus=='Pending'" class="head-details">
+  <div class="main-header1">
+    <div class="header-custom1">
+     Data from Finance
+    </div>
+  </div>
+  <div class="mainCreate" name="con-form">
+    <div class="top-detail">
+      <div class="sub-top">
+        <div class="title-bold middle">
+          Client
+        </div>
+        <div class="middle">
+          {{this.configData.project.clientName}}
+        </div>
+      </div>
+      <div class="sub-top">
+        <div class="title-bold middle">
+          Project
+        </div>
+        <div class="middle">
+          {{this.configData.project.projectTitle}}
+        </div>
+      </div>
+      <div class="sub-top">
+        <div class="title-bold middle">
+          Client Email
+        </div>
+        <div class="middle">
+          <input type="text" class="form-control" [(ngModel)]="configData.project.clientEmail" (ngModelChange)="isFieldEdit()" >
+        </div>
+      </div>
+      <div class="sub-top">
+        <div class="title-bold middle">
+          Manager Email
+        </div>
+        <div class="middle">
+          <input type="text" class="form-control" [(ngModel)]="configData.managerEmail" (ngModelChange)="isFieldEdit()" >
+        </div>
+      </div>
+    </div>
+    <div>
+      <ul>
+        <ng-container *ngFor="let item of this.configData.employeeConfigList">
+          <li type="disc" class="time-sheet-info">
+            <span class="cal-align">&#9679; TimeSheet for</span>
+            <span class="time-sheet-name cal-align">{{item.empName}}</span>
+            <span>from: <input type="date" id="datefield-1" class="form-control cal-width" [(ngModel)]="item.startDate" (ngModelChange)="calculationAccToTime(item)"> to:
+              <input type="date" class="form-control cal-width" [(ngModel)]="item.endDate" (ngModelChange)="calculationAccToTime(item)" ></span>
+          </li>
+        </ng-container>
+        <!-- <li type="disc" class="time-sheet-info">
+          <span class="cal-align">&#9679; TimeSheet for</span>
+          <span class="time-sheet-name cal-align">Shivam Maheshwari</span>
+          <span>from: <input type="date" id="datefield-1" max="{{this.currDate}}" class="form-control cal-width"> to:
+            <input type="date" max="{{this.currDate}}" class="form-control cal-width"></span>
+        </li> -->
+        <!-- <li type="disc" class="time-sheet-info">
+          <span class="cal-align">&#9679; TimeSheet for</span>
+          <span class="time-sheet-name cal-align">Astik Dubey</span>
+          <span>from: <input type="date" max="{{this.currDate}}" class="form-control cal-width"> to: <input type="date"
+              max="{{this.currDate}}" class="form-control cal-width"></span>
+        </li> -->
+      </ul>
+    </div>
+    <div class="main-table">
+      <table border="1">
+
+        <tr>
+          <th rowspan="2">Emp ID</th>
+          <th rowspan="2">Employee Name</th>
+          <th rowspan="2">Designation</th>
+          <th rowspan="2">Leaves Taken</th>
+          <th colspan="2">
+           Leaves Available
+          </th>
+          <th rowspan="2">Rate/Hour</th>
+          <th rowspan="2">Hours Billed</th>
+          <th rowspan="2">Total Amt.</th>
+          <th rowspan="2">Edit Details</th>
+        </tr>
+        <tr>
+          <th>Current Month</th>
+          <th>Total Leaves</th>
+        </tr>
+
+        <ng-container *ngFor="let item of this.configData.employeeConfigList">
+          <tr class="row-color">
+
+            <td>{{item.empID}}</td>
+            <td>{{item.empName}}</td>
+            <td>{{item.designation}}</td>
+            <td>
+              <ng-container *ngIf="item.isEdit">
+                <input type="text" class="input-width" [(ngModel)]="item.leaves" (ngModelChange)="calculationAccToTime(item)">
+              </ng-container>
+              <ng-container class="input-width" *ngIf="!item.isEdit">
+                {{item.leaves}}
+              </ng-container>
+            </td>
+            <td>
+              <ng-container *ngIf="item.isEdit">
+                <input type="text" class="input-width leaves-taken" [(ngModel)]="item.currentMonthLeaves">
+              </ng-container>
+              <ng-container class="input-width" *ngIf="!item.isEdit">
+                {{item.currentMonthLeaves}}
+              </ng-container>
+            </td>
+            <td>
+              <ng-container *ngIf="item.isEdit">
+                <input type="text" class="input-width leaves-taken" [(ngModel)]="item.leavesTotal">
+              </ng-container>
+              <ng-container class="input-width" *ngIf="!item.isEdit" >
+                {{item.leavesTotal}}
+              </ng-container>
+            </td>
+            <td>
+              <ng-container *ngIf="item.isEdit">
+                <input type="text" class="input-width leaves-taken" [(ngModel)]="item.ratePerHour" (ngModelChange)="calculationAccToTime(item)" >
+              </ng-container>
+              <ng-container *ngIf="!item.isEdit">
+                {{item.ratePerHour}}
+              </ng-container>
+            </td>
+            <td>{{item.hoursBilled}}</td>
+            <td>{{item.individualPay}}</td>
+            <td><button class="btn btn-primary" (click)="editable(item)"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                  height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                  <path
+                    d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
+                </svg>&nbsp;Edit</button></td>
+
+          </tr>
+        </ng-container>
+
+
+        <!-- <tr class="row-color" >
+          <td>1234</td>
+          <td>Rohan Kumar</td>
+          <td>SDE-1</td>
+          <td><input type="text" class="input-width"></td>
+          <td><input type="text" class="input-width"></td>
+          <td><input type="text" class="input-width"></td>
+          <td><input type="text" class="input-width"></td>
+          <td>300</td>
+          <td>140000</td>
+        </tr> -->
+        <tr>
+          <td colspan = 8>
+            <div class="total-payment">
+              <span class="total-payment-header">Total Payment</span>
+            </div>
+          </td>
+          <td colspan = 2>
+            <span class="total-payment-header total-payment">{{this.configData.totalPayment}}</span>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="top-detail-1">
+      <div class="sub-top">
+        <div class="title-bold middle">
+          PO Number:
+        </div>
+        <div class="middle">
+          <input type="text" class="form-control" [(ngModel)]="configData.project.poNumber" (ngModelChange)="isFieldEdit()">
+        </div>
+      </div>
+      <div class="sub-top">
+        <div class="title-bold middle">
+          PO Balance:
+        </div>
+        <div class="middle">
+          <input type="text" class="form-control" [(ngModel)]="configData.project.poBalance" (ngModelChange)="isFieldEdit()">
+        </div>
+      </div>
+      <div class="sub-top">
+        <div class="title-bold middle">
+          PO Expiry Date:
+        </div>
+        <div class="middle">
+          <input type="date" class="form-control" [(ngModel)]="configData.project.poExpiry" (ngModelChange)="isFieldEdit()">
+        </div>
+      </div>
+      <!-- <div class="sub-top">
+        <div class="title-bold middle">
+          <input *ngIf="(configData.project.gst == 0 || configData.project.gst == null)"  type="checkbox" id="myCheck"  (click)="myFunction()" >
+          <input *ngIf="configData.project.gst > 0"  type="checkbox" id="myCheck"  (click)="myFunction()" checked >
+          <label class="form-check-label">
+            Enable GST
+          </label>
+        </div>
+        <div class="middle">
+          <span id="text"  class="title-bold">GST %: <input (ngModelChange)="isFieldEdit()" [(ngModel)]="configData.project.gst" (ngModelChange)="runTotalPayment()" type="text" class="input-width-gst"></span>
+        </div>
+      </div> -->
+      <div class="sub-top">
+        <div class="title-bold middle">
+          GST %: {{this.configData.project.gst}}
+        </div>
+      </div>
+    </div>
+    <div class="form-floating comment-box">
+      <label class="title-bold">Comment For Finance:</label>
+      <textarea class="form-control" [(ngModel)]="configData.teamManagerComment" (ngModelChange)="isFieldEdit()"  placeholder="Leave your comment" style="height: 100px" ></textarea>
+      <!-- <label for="floatingTextarea2">Comments</label> -->
+    </div>
+    <div class="button-section">
+      <button type="button" (click)="saveChanges()" class="btn btn-dark">Save Changes</button>
+      <button type="button" (click)="sendForReview()"  class="btn btn-primary">Approve and Send to Finance Team</button>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="alert alert-success" role="alert">
+  Feedback successfully sent.
+</div> -->

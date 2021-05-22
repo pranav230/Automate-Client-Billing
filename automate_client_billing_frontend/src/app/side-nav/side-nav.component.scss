@@ -1,0 +1,22 @@
+.side-bar{
+  width: 13%;
+  height: 810px;
+  position: fixed;
+  background-color: #f9f7f9;
+  color: rgb(118,133,182);
+}
+
+.home,.billing-details,.responses,.new-project,.client-payment{
+  padding-top: 30px;
+  padding-left: 30px;
+}
+
+.home:hover,.billing-details:hover,.responses:hover,.new-project:hover,.client-payment:hover{
+  color: lightskyblue;
+}
+
+a:link{
+  text-decoration: none;
+}
+
+

@@ -1,0 +1,57 @@
+<ngx-spinner type="ball-spin-clockwise-fade" size="medium"></ngx-spinner>
+<app-header></app-header>
+<div class="main-right-panel">
+
+  <div class="panel-header">
+  </div>
+
+  <div class="main-header">
+      <div class="header-custom">
+        Generate Monthly Project Report
+      </div>
+  </div>
+
+  <div class="upper-lower-panel">
+
+    <div class="lower-panel">
+      <div class="filter">
+        <div class="left">
+          <input type="month" id="start" name="start" class="broad bar1"
+            min="2010-03" max="{{calender}}" [(ngModel)]="calenderValue">
+          <button type="button" (click)="loadPageAccordingMonth()" class="btn btn-dark bar">Sort</button>
+        </div>
+        <div class="right1">
+          <div class="input-group inp1">
+            <input type="search" [(ngModel)]="billSearch" (ngModelChange)="changePaginatorOnSearch()" class="form-control rounded broad bar1" placeholder="Search..." aria-label="Search"
+              aria-describedby="search-addon" />
+            <button type="button" class="btn btn-dark bar">Search</button>
+          </div>
+        </div>
+      </div>
+      <mat-accordion>
+        <ng-container *ngFor="let poi of projectList | filter : billSearch | paginate : {itemsPerPage:4,currentPage:p,id:'paginateBill'}">
+          <app-expansion-card [projectData]="poi" [currMMYY]="filterDay"></app-expansion-card>
+        </ng-container>
+      </mat-accordion>
+    </div>
+
+    <div class="paginator2">
+      <pagination-controls id="paginateBill" autoHide="true" responsive="true"(pageChange)="p=$event" class="billpage-paginator"></pagination-controls>
+    </div>
+
+    <footer class="bg-light text-center text-lg-start">
+      <div class="text-center p-3" style="background-color: white;">
+        © 2021 Copyright:
+        <a class="text-dark" href="https://hashedin.com/">Hashedin.com</a>
+      </div>
+    </footer>
+  </div>
+
+</div>
+
+
+
+
+
+
+

@@ -1,0 +1,71 @@
+<ngx-spinner type="ball-spin-clockwise-fade" size="medium"></ngx-spinner>
+<app-header></app-header>
+<div class="client-main-div" *ngIf="view==true">
+
+  <div class="panel-header">
+  </div>
+
+  <div class="main-header">
+      <div class="header-custom">
+        Client Responses
+      </div>
+  </div>
+
+  <div class="client-upper-lower-panel">
+    <div class="filter">
+      <div class="left">
+        <input type="month" id="start" name="start" class="broad bar1"
+           min="2010-03" max="{{calender}}" [(ngModel)]="calenderValue">
+        <button type="button" (click)="loadPageAccordingMonth()" class="btn btn-dark bar">Sort</button>
+      </div>
+      <div class="right1">
+        <div class="input-group inp1">
+          <input type="search" [(ngModel)]="searchValue" (ngModelChange)="boxChangeRequired(searchValue)" class="form-control rounded broad bar1" placeholder="Search..." aria-label="Search"
+            aria-describedby="search-addon" />
+          <button type="button" class="btn btn-dark bar">Search</button>
+        </div>
+      </div>
+    </div>
+    <div class="client-lower-panel">
+      <mat-tab-group mat-align-tabs="start" class="header-lower-panel" animationDuration="1000ms">
+        <mat-tab label="Approved" *ngIf="approvedValue!=false">
+          <div class="card-row">
+            <ng-container *ngIf="approvedlist.length!=0">
+              <app-client-approved [approvedlist]="approvedlist" [searchValue]="searchValue" [month]="month" [year]="year"></app-client-approved>
+            </ng-container>
+            <ng-container *ngIf="approvedlist.length==0">
+              <div class="nothing">No Approved Payment In This Month</div>
+            </ng-container>
+          </div>
+        </mat-tab>
+        <mat-tab label="Pending" *ngIf="pendingValue!=false">
+          <div class="card-row">
+            <ng-container *ngIf="pendinglist.length!=0">
+              <app-client-pending [pendinglist]="pendinglist"  [searchValue]="searchValue" [month]="month" [year]="year"></app-client-pending>
+            </ng-container>
+            <ng-container *ngIf="pendinglist.length==0">
+              <div class="nothing">No Pending Payment In This Month</div>
+            </ng-container>
+          </div>
+        </mat-tab>
+        <mat-tab label="Rejected" *ngIf="rejectedValue!=false">
+          <div class="card-row">
+            <ng-container *ngIf="rejectedlist.length!=0">
+              <app-client-rejected [rejectedlist]="rejectedlist" [searchValue]="searchValue" [month]="month" [year]="year"></app-client-rejected>
+            </ng-container>
+            <ng-container *ngIf="rejectedlist.length==0">
+              <div class="nothing">No Rejected Payment In This Month</div>
+            </ng-container>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+
+    <footer class="bg-light text-center text-lg-start">
+      <div class="text-center p-3" style="background-color: white;">
+        © 2021 Copyright:
+        <a class="text-dark" href="https://hashedin.com/">Hashedin.com</a>
+      </div>
+    </footer>
+  </div>
+</div>

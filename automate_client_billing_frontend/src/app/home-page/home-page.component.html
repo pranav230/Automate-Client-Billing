@@ -1,0 +1,18 @@
+<ngx-spinner type="ball-spin-clockwise-fade" size="medium"></ngx-spinner>
+<app-header></app-header>
+<div class="home-div">
+  <div *ngIf="timer==1" class="home morning" ></div>
+  <div *ngIf="timer==2" class="home afternoon" ></div>
+  <div *ngIf="timer==3" class="home evening" ></div>
+  <div *ngIf="timer==4" class="home night" ></div>
+  <div class="hello-msg">
+    <span><h1>{{message}}&#44;&nbsp;</h1><h1 class="user-name"> {{user.firstName}}</h1></span>
+    <section><h2 *ngIf="quotes[randomNumber]" >❝ {{quotes[randomNumber].text}}❞</h2>
+    <h4 *ngIf="quotes[randomNumber]" >- {{quotes[randomNumber].author}}</h4></section>
+  </div>
+
+  <div class="inner-app-card">
+    <app-card-component ></app-card-component>
+  </div>
+</div>
+

@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Template</title>
+    <style>
+         table, th, td {
+            border: 2px solid black;
+            border-collapse: collapse;
+            padding: 10px;
+         }
+      </style>
+</head>
+<body>
+
+<span>
+    <p>Hi, Team</p>
+    <h3 style="color:red;"><strong>Note: This is a reminder message to approve the project billing as soon as possible</strong></h3>
+    <p> All pending timesheet has been approved on the contract management portal for
+        <span th:text="${clientName}"></span>.So please go ahead and Approve the bill and make any changed if required. Timesheet details are attached</p>
+    <p> Please note </p>
+    <ul th:each="employee,it: ${employeeList}">
+        <li>Timesheet for <span th:text="${employee.empName}"></span> is from <span th:text="${dateList[it.index][0]}"></span> to <span th:text="${dateList[it.index][1]}"></span></li>
+    </ul>
+</span>
+
+<span>
+    <table>
+        <tr>
+            <th>Account</th>
+            <td th:text="${clientName}"></td>
+        </tr>
+        <tr>
+            <th>Project name</th>
+            <td th:text="${projectName}"></td>
+        </tr>
+        <tr>
+            <th>Point of Contact</th>
+            <td th:text="${teamLeadMailId}"></td>
+        </tr>
+        <tr>
+            <th>PO Number</th>
+            <td th:text="${poNumber}"></td>
+        </tr>
+        <tr>
+            <th>PO Balance</th>
+            <td th:text="${poBalance}"></td>
+        </tr>
+        <tr>
+            <th>PO ExpiryDate</th>
+            <td th:text="${poExpiry}"></td>
+        </tr>
+
+        <tr>
+            <th>Hasher Name</th>
+            <th>Designation/Role</th>
+            <th>Rate/Hours</th>
+            <th>Hours Billed</th>
+            <th>Total</th>
+        </tr>
+        <tr th:each="employee: ${employeeList}">
+            <td th:text="${employee.empName}"></td>
+            <td th:text="${employee.designation}"></td>
+            <td th:text="${employee.ratePerHour}"></td>
+             <td th:text="${employee.hoursBilled}"></td>
+            <td th:text="${employee.ratePerHour * employee.hoursBilled}">Total</td>
+        </tr>
+        <tr>
+            <td>Total</td>
+            <th></th>
+            <th></th>
+            <th></th>
+            <td th:text="${total}"></td>
+        </tr>
+        <tr>
+            <td>
+                Note:<br></br>
+                <span th:each="employee,it: ${employeeList}">
+                    Billing Date for <strong th:text="${employee.empName}"></strong> is <strong th:text="${dateList[it.index][0]}"></strong> to <strong th:text="${dateList[it.index][1]}"></strong><br></br>
+                </span>
+            </td>
+        </tr>
+    </table>
+</span>
+
+<span>
+    <br></br>
+    <p><strong>Comment From Finance Team:</strong> <span th:text="${comment}"></span></p>
+</span>
+
+<button>
+    <a th:href="${link}">Review</a>
+</button>
+
+</body>
+</html>

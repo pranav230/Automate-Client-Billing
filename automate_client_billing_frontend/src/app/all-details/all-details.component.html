@@ -1,0 +1,182 @@
+<ngx-spinner type="ball-spin-clockwise-fade" size="medium"></ngx-spinner>
+<app-header></app-header>
+<div class="head-details">
+  <div class="main-header1">
+    <div class="header-custom1">
+      Details:
+    </div>
+  </div>
+  <div class="top-detail">
+    <div class="sub-top">
+      <div class="title-bold middle">
+        Client
+      </div>
+      <div class="middle">
+        {{details.clientName}}
+      </div>
+    </div>
+    <div class="sub-top">
+      <div class="title-bold middle" >
+        Project
+      </div>
+      <div class="middle">
+        {{details.projectName}}
+      </div>
+    </div>
+    <div class="sub-top">
+      <div class="title-bold middle">
+         Client Email
+      </div>
+      <div class="middle">
+        tatamotors@gmail.com
+      </div>
+    </div>
+    <div class="sub-top">
+      <div class="title-bold middle">
+        Total Employees
+      </div>
+      <div class="middle">
+        {{details.totalEmployees}}
+      </div>
+    </div>
+  </div>
+  <div class="left-right">
+    <div class="sub-top1">
+      <div class="label">
+        <div class="title-bold divide">
+          Team Lead ID:
+        </div>
+        <div >
+          {{details.teamLeadID}}
+        </div>
+      </div>
+      <div class="label">
+        <div class="title-bold divide">
+          Team Lead:
+        </div>
+        <div >
+          {{details.teamLeadName}}
+        </div>
+      </div>
+      <div class="label">
+        <div class="title-bold divide">
+          Manager Response Status:
+        </div>
+        <div >
+          {{details.teamLeadStatus}}
+        </div>
+      </div>
+      <div class="label">
+        <div class="title-bold divide">
+          Manager Reminder Requests:
+        </div>
+        <div >
+          {{details.teamLeadReminder}}
+        </div>
+      </div>
+      <div class="label">
+        <div class="title-bold divide">
+          Manager Feedback:
+        </div>
+        <div >
+          {{details.teamLeadFeedback}}
+        </div>
+      </div>
+    </div>
+    <div class="sub-top1">
+      <div class="label">
+        <div class="title-bold divide">
+          Client Response Status:
+        </div>
+        <div >
+          {{details.clientPaymentStatus}}
+        </div>
+      </div>
+      <div class="label">
+        <div class="title-bold divide">
+          Mode of Payment:
+        </div>
+        <div >
+          {{details.modeOfPayment}}
+        </div>
+      </div>
+      <div class="label">
+        <div class="title-bold divide">
+          Total Amount:
+        </div>
+        <div >
+          {{details.clientTotalPayment}}
+        </div>
+      </div>
+      <div class="label">
+        <div class="title-bold divide">
+          Client Reminder Requests:
+        </div>
+        <div >
+          {{details.clientReminder}}
+        </div>
+      </div>
+      <div class="label">
+        <div class="title-bold divide">
+          Client Feedback:
+        </div>
+        <div >
+          {{details.clientFeedback}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="tab">
+    <table>
+      <tr>
+        <th>Emp ID</th>
+        <th>Employee Name</th>
+        <th>Designation</th>
+        <th>Leaves</th>
+        <th>Hours Billed</th>
+        <th>Total Amount</th>
+      </tr>
+
+      <tr *ngFor="let det of details.employees">
+        <td>{{det.employeeId}}</td>
+        <td>{{det.employeeName}}</td>
+        <td>{{det.designation}}</td>
+        <td>{{det.leaves}}</td>
+        <td>{{det.hoursBilled}}</td>
+        <td>{{det.individualPay}}</td>
+      </tr>
+
+    </table>
+  </div>
+</div>
+<div class="form-floating comment-box1">
+  <ng-container *ngIf="disableClientButton==false">
+    <div class="title-bold" style="padding-bottom: 0.5rem;">Comments</div>
+    <textarea class="form-control" [(ngModel)]="commentbox"  id="floatingTextarea2" placeholder="Leave your comment" style="height: 100px"></textarea>
+  </ng-container>
+  <ng-container *ngIf="disableClientButton==true && details.financeToClientComment!=null&& details.financeToClientComment!='' " style="margin-left: 2%;">
+    <div >
+      <label class="title-bold" style="padding-left: 6rem;">Comment For Client:</label>
+      <div class="border-box-comment">{{details.financeToClientComment}}</div>
+    </div>
+  </ng-container>
+
+</div>
+<div class="center">
+  <button class="btn btn-dark button-width"  [routerLink]="'../../..'">&#8617;Back </button>
+  <ng-container *ngIf="disableClientButton==false">
+    <button (click)="sendEmail()"   class="btn btn-success button-width btnExcel"  >Send to Client </button>
+  </ng-container>
+  <ng-container *ngIf="disableClientButton==true">
+    <button  disabled="disabled" class="btn btn-success button-width btnExcel"  >Send to Client </button>
+   </ng-container>
+
+</div>
+<footer class="bg-light text-center text-lg-start">
+  <div class="text-center p-3 col-foot">
+    © 2021 Copyright:
+    <a class="text-dark" href="https://hashedin.com/">Hashedin.com</a>
+  </div>
+</footer>
+
+

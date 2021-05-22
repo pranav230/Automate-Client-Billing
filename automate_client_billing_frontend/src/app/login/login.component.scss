@@ -1,0 +1,104 @@
+html, body { height: 100%; }
+
+.login-background{
+  background-image: url("../../assets/images/loginBackground.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  filter: blur(5px);
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+.login-page{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  // -webkit-filter: blur(8px);
+}
+
+
+
+.img-container{
+  flex: 60%;
+  background-image: url(../../assets/images/loginimage.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position-x: 100px;
+  .company-logo{
+    height: 18%;
+    width: 22%;
+    margin: 2.5% 0% 0% 4%;
+    img{
+      height: 100%;
+      width: 100%;
+    }
+  }
+}
+
+
+.Login-Details{
+  flex:40%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  .Welcome-bar{
+      color: #333333;
+      font-family: fbft;
+      font-size: 70px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 70px;
+      padding-bottom: 1%;
+      text-align: center;
+      text-transform: none;
+  }
+  .Welcome-mini-bar{
+      color: #807575;
+      font-family: fbft;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 20px;
+      padding: 1% 0% 1.5% 0%;
+      text-align: center;
+      text-transform: none;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      img{
+        height: 1.5em;
+        width: 1.5em;
+        margin-left: 0.8rem;
+      }
+  }
+  .SignIn-btn{
+      border-radius: 100px;
+      color: #ffffff;
+      font-family: arial;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: bold;
+      line-height: 40px;
+      text-transform: none;
+      background-color: #222222;
+      border: none;
+      width: auto;
+      padding: 1% 4%;
+      margin-top: 4%;
+
+      &:hover{
+        color: black;
+        border: 1px solid black;
+        background-color: white;
+        box-shadow: 2px 2px 5px 3px rgba(0,0,0,0.2);
+      }
+
+      transition: 0.1s;
+  }
+}
+

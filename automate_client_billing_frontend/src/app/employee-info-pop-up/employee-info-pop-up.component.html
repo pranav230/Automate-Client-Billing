@@ -1,0 +1,46 @@
+<div mat-dialog-content>
+  <h1 mat-dialog-title>Employee Details</h1>
+  <div class="employee-info">
+    <div class="employee-main">
+      <span class="employee-label">Employee Id : </span>
+      <span class="employee-body">{{employeeDetails.employeeId}}</span>
+    </div>
+    <div class="employee-main">
+      <span class="employee-label">Employee Name : </span>
+      <span class="employee-body">{{employeeDetails.employeeName}}</span>
+    </div>
+    <div class="employee-main">
+      <span class="employee-label">Employee Designation : </span>
+      <span class="employee-body">{{employeeDetails.designation}}</span>
+    </div>
+    <div class="employee-main">
+      <span class="employee-label">Leaves : </span>
+      <span class="employee-body">{{employeeDetails.leaves}}</span>
+    </div>
+    <div class="employee-main">
+      <span class="employee-label">Rate per Hour : </span>
+      <span class="employee-body">{{employeeDetails.ratePerHour}}</span>
+    </div>
+    <div class="employee-main">
+      <span class="employee-label">Start Date : </span>
+      <span class="employee-body">{{employeeDetails.startDate}}</span>
+    </div>
+    <div class="employee-main">
+      <span class="employee-label">End Date : </span>
+      <span class="employee-body">{{employeeDetails.endDate}}</span>
+    </div>
+
+
+
+    <!-- <div class="employee-main">
+      <span class="employee-label">Percentage : </span>
+      <span class="employee-body">{{employeeDetails.percentage}}</span>
+    </div> -->
+  </div>
+  <div>
+    <div mat-dialog-actions>
+      <button mat-button mat-dialog-close class="btn btn-dark">Close</button>
+    </div>
+  </div>
+</div>
+

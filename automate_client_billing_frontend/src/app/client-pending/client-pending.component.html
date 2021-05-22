@@ -1,0 +1,42 @@
+<ngx-spinner type="ball-spin-clockwise-fade" size="medium"></ngx-spinner>
+<div class="card-row">
+  <div *ngFor="let info of pendinglist| filter:searchValue |paginate : {itemsPerPage:3,currentPage:q,id: 'paginate2'}" [routerLink]="['/client/'+info.projectID+'/'+month+'/'+year]">
+    <div class="card text-center">
+      <div class="card-header">
+        {{info.clientName}}
+      </div>
+      <div class="card-body">
+        <label class="main-label">Project Name</label>
+        <h5 class="card-title">{{info.projectName}}</h5>
+          <div class="payment-details">
+            <!-- <div class="row1">
+              <label class="main-label">Payment Status</label>
+              <p [ngClass]="{
+                'main-desc complete':info.paymentStatus=='Full Payment',
+                'main-desc partial':info.paymentStatus=='Partial Payment'
+                }">{{info.paymentStatus}}</p>
+            </div> -->
+            <div class="row1">
+              <label class="main-label">Total Amount</label>
+              <p class="main-desc">{{info.totalPayment}}</p>
+            </div>
+            <!-- <div class="row2">
+              <label class="main-label">Paid Amount</label>
+              <p class="main-desc">{{info.paidAmount}}</p>
+            </div> -->
+            <div class="row2">
+              <label class="main-label">Reminder Request</label>
+              <p class="main-desc">{{info.clientReminder}}</p>
+            </div>
+        </div>
+        <button class="btn btn-warning" (click)="sendReminderToClient($event,info)">Send Reminder</button>
+      </div>
+      <div class="card-footer text-muted">
+        {{info.timestamp}}
+      </div>
+    </div>
+  </div>
+  <div class="paginator2">
+    <pagination-controls id="paginate2" responsive="true" (pageChange)="q=$event" class="billpage-paginator"></pagination-controls>
+  </div>
+</div>

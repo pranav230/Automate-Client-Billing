@@ -1,0 +1,36 @@
+.mat-dialog-container{
+  background-color: white;
+  color: black;
+}
+
+.project-pop-up-header{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.pop-up-content{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.inner-info{
+  margin-left: 1.2rem;
+  font-size: 1.3rem;
+}
+
+.imp-buttons{
+  display: flex;
+  justify-content: space-around;
+}
+
+.inner-label{
+  font-size: 1rem;
+}
+
+.client-send{
+  margin-top: 1.4rem;
+}
+
+

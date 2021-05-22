@@ -1,0 +1,55 @@
+.payment-button{
+  width: 25%;
+  margin: auto;
+  margin-top: 10%;
+}
+
+.comment-box{
+  width: 100%;
+  padding-bottom: 1rem;
+}
+
+.comment-box-label{
+  font-size: 1.5em;
+}
+
+.reject-payment{
+  // margin-left: 20%;
+}
+
+.payment-options{
+  display: flex;
+  flex-direction: column;
+  margin: 2rem 29rem 2rem 29rem;
+}
+
+.extra-features{
+  display: flex;
+  flex-direction:column ;
+  // align-items: center;
+}
+
+.down-buttons{
+  display: flex;
+  justify-content: space-around;
+}
+.sub-top11{
+  padding: 2%;
+}
+
+.label1{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-top: 1rem;
+}
+.title-bold1{
+  font-size: large;
+  font-weight: bold;
+}
+
+.divide1{
+  margin-right: 3rem;
+}
+
+

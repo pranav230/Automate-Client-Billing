@@ -1,0 +1,73 @@
+stages:
+  - build
+  - deploy
+  
+build:
+  image: maven:3.6.3-openjdk-11
+  stage: build
+  only:
+  - master
+  tags:
+  - backend
+  script:
+    - export DATABASE_NAME=$DATABASE_NAME
+    - export DATABASE_USER=$DATABASE_USER
+    - export DATABASE_PASSWORD=$DATABASE_PASSWORD
+    - export DATABASE_HOST=$DATABASE_HOST
+    - export DATABASE_PORT=$DATABASE_PORT
+    - mvn clean package -B
+  artifacts:
+    paths:
+      - target/
+deploy_job:
+  image: google/cloud-sdk:alpine
+  stage: deploy
+  only:
+  - master
+  tags:
+  - backend
+  dependencies: 
+    - build
+  before_script:
+  - "ServiceName=automateclientbilling"
+  - "echo $ServiceName"
+  - |
+    cat <<EOF >> app.yaml
+    runtime: java11
+    env_variables:
+      DATABASE_NAME: "$DATABASE_NAME"
+      DATABASE_USER: "$DATABASE_USER"
+      DATABASE_PASSWORD: "$DATABASE_PASSWORD"
+      DATABASE_HOST: "$DATABASE_HOST"
+      DATABASE_PORT: "$DATABASE_PORT"
+    manual_scaling:
+      instances: 1
+    liveness_check:
+      path: "/"
+    readiness_check:
+      path: "/"
+    service: $ServiceName
+    EOF
+  - |
+    cat <<EOF >> $CI_PIPELINE_ID.json
+    {
+      "type": "service_account",
+      "project_id": "hu18-groupa-angular",
+      "private_key_id": "$PRIVATE_KEY_ID",
+      "private_key": "$PRIVATE_KEY",
+      "client_email": "huappengine@hu18-groupa-angular.iam.gserviceaccount.com",
+      "client_id": "104726124207565481899",
+      "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+      "token_uri": "https://oauth2.googleapis.com/token",
+      "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+      "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/huappengine%40hu18-groupa-angular.iam.gserviceaccount.com"
+      }
+    EOF
+  - "cat $CI_PIPELINE_ID.json"
+  script:
+  - gcloud auth activate-service-account --key-file $CI_PIPELINE_ID.json
+  - gcloud --project hu18-groupa-angular app deploy target/clientBilling-0.0.1-SNAPSHOT.jar --appyaml app.yaml --version v1
+  - url=$(gcloud app services browse $ServiceName --no-launch-browser --project hu18-groupa-angular)
+  - echo $url
+  after_script:
+  - rm $CI_PIPELINE_ID.json

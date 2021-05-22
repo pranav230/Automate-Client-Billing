@@ -1,0 +1,33 @@
+.card-whole{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.card-info{
+  display: flex;
+  justify-content: space-around;
+  margin-top: 0.5rem;
+}
+
+.button-info .btn-info{
+  color: black;
+  width: 176%;
+  // background-color: lightcyan;
+}
+
+.button-info{
+  margin-bottom: 2%;
+}
+
+.employee-id,.client-info,.total-employee-info,.button-info{
+  padding-top: 0.7rem;
+}
+
+.content-info{
+  font-size: 1rem;
+}
+
+.label-info{
+  font-size: 1.3rem;
+}

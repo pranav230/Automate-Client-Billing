@@ -1,0 +1,59 @@
+<!-- Component :-  Header/ Top Navigation Bar -->
+<div class = "navbar">
+  <div class="logo" >
+      <img src="../../assets/images/newlogo.png">
+  </div>
+  <div class="home com" [routerLink]="'/home'" routerLinkActive="active-link">Home</div>
+  <div class="billing-details com" [routerLink]="'/billingDetails'" routerLinkActive="active-link">Billing Details</div>
+  <div class="responses com"  [routerLink]="'/response'" routerLinkActive="active-link">Responses</div>
+  <div class="client-payment com" [routerLink]="'/client'" routerLinkActive="active-link">Client Payment</div>
+  <div class="notification com1  dropdown" (click)="updateNotification()">
+    <div class="bell-container" data-toggle="dropdown" >
+      <div class="bell-number" *ngIf="sizeOfNotification!=0">{{sizeOfNotification}}</div>
+      <div class="bell-image"  [ngClass]="{
+        '':sizeOfNotification==0,
+        'animate':sizeOfNotification!=0
+        }">
+        <img src="../../assets/images/bell.svg">
+      </div>
+    </div>
+    <div class="dropdown-menu dropdown-menu-right">
+      <div class="allCaught" *ngIf="newNotification.length==0" >
+        <img src="../../assets/images/all-caught.png">
+        <div class = "cent">Looks Like your all caught up!</div>
+      </div>
+      <div *ngIf="newNotification.length!=0">
+      <div class="item" *ngFor="let itemlist of newNotification">
+        <div aria-live="assertive" aria-atomic="true" class="toast fade show" data-autohide="false">
+          <div class="toast-header">
+            <div [ngClass]="{
+              'accepted':itemlist.status=='Approved',
+              'rejected':itemlist.status=='Rejected'
+              }"></div>
+            <strong class="mr-auto">{{itemlist.status}}</strong>
+            <small>{{itemlist.timestamp}}</small>
+          </div>
+          <div class="toast-body">
+            <span class="startName">{{itemlist.name}}</span> has {{itemlist.status}} the
+            <span *ngIf="itemlist.type=='client'">
+              Payment for the Proposed Project.
+            </span>
+            <span *ngIf="itemlist.type=='teamLead'">
+              Proposed Invoice of the Project.
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+      <div class="view-all" [routerLink]="'/Notification'">View All Notification</div>
+    </div>
+  </div>
+  <div class="logout com1 dropdown" >
+    <img src="{{userCredentials.photoUrl}}" data-toggle="dropdown">
+    <div class="dropdown-menu dropdown-menu-right">
+      <a class="dropdown-item " id="nothover"><div id="name"  >{{userCredentials.name}}</div><div id = "email">{{userCredentials.email}}</div></a>
+      <a *ngIf="userdesignation.designation=='Manager'" class="dropdown-item" (click)="addMember()"><i class="fa fa-user-plus" aria-hidden="true"></i>Add Member</a>
+      <a class="dropdown-item" (click)="signOut()"><i class="material-icons">&#xE8AC;</i>Log Out</a>
+    </div>
+  </div>
+</div>

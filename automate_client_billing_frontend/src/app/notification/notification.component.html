@@ -1,0 +1,32 @@
+<div class="body">
+<ngx-spinner type="ball-spin-clockwise-fade" size="medium"></ngx-spinner>
+<app-header></app-header>
+  <div class="card">
+    <div class="card-header">
+      Notifications
+    </div>
+    <div class="card-body">
+      <div class="notification" *ngFor="let itemlist of allNotification.notificationList">
+        <div class="notification-avatar">
+          <img src="../../assets/images/checked.png" *ngIf="itemlist.status=='Approved'" aria-hidden="true">
+          <img src="../../assets/images/cross.png" *ngIf="itemlist.status=='Rejected'" aria-hidden="true">
+        </div>
+        <div class="notification-body">
+          <p>
+            <span class="startName">{{itemlist.name}}</span> has {{itemlist.status}} the
+            <span *ngIf="itemlist.type=='client'">
+              Payment for the Proposed Project.
+            </span>
+            <span *ngIf="itemlist.type=='teamLead'">
+              Proposed Invoice of the Project.
+            </span>
+          </p>
+          <span class="notification-time">
+            <span class="emoji" role="img" aria-label="Emoji">📅</span>
+            {{itemlist.timestamp}}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

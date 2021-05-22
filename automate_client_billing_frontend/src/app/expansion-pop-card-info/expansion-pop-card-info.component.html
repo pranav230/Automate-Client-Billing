@@ -1,0 +1,78 @@
+<h1 mat-dialog-title>Project Details</h1>
+<!-- <div mat-dialog-content>
+  <div class="project-pop-up-header">
+    <div class="pop-up-content">
+      <div>
+        <div>Project Id : </div>
+        <div class="inner-info">{{projectDetailPopUp.projectId}}</div>
+      </div>
+      <div class="col-2">
+        <div>Project Name : </div><br>
+        <div class="inner-info">{{projectDetailPopUp.projectName}}</div>
+      </div>
+    </div>
+    <div class="pop-up-content">
+      <div>
+        <div>Project Id : </div>
+        <div>{{projectDetailPopUp.projectId}}</div>
+      </div>
+      <div class="col-2">
+        <div>Project Name : </div>
+        <div>{{projectDetailPopUp.projectName}}</div>
+      </div>
+    </div>
+    <div class="pop-up-content">
+      <div>
+        <div>Project Id : </div>
+        <div>{{projectDetailPopUp.projectId}}</div>
+      </div>
+      <div class="col-2">
+        <div>Project Name : </div>
+        <div>{{projectDetailPopUp.projectName}}</div>
+      </div>
+    </div>
+    <div class="pop-up-content">
+      <div>
+        <div>Project Id : </div>
+        <div>{{projectDetailPopUp.projectId}}</div>
+      </div>
+      <div class="col-2">
+        <div>Project Name : </div>
+        <div>{{projectDetailPopUp.projectName}}</div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<div mat-dialog-content>
+  <div class="project-pop-up-header">
+    <div class="pop-up-content">
+      <span class="inner-label">Project Id : </span>
+      <span class="inner-info">{{projectDetailPopUp.projectId}}</span>
+    </div>
+    <div class="pop-up-content">
+      <span class="inner-label">Project Name :</span><br>
+      <span class="inner-info">{{projectDetailPopUp.projectName}}</span>
+    </div>
+    <div class="pop-up-content">
+      <span class="inner-label">Client Name :</span><br>
+      <span class="inner-info">{{projectDetailPopUp.clientName}}</span>
+    </div>
+    <div class="pop-up-content">
+      <span class="inner-label">Total Employees :</span><br>
+      <span class="inner-info">{{projectDetailPopUp.totalEmployees}}</span>
+    </div>
+    <div class="pop-up-content">
+      <span class="inner-label">Total Payment :</span><br>
+      <span class="inner-info">{{projectDetailPopUp.totalPayment}}</span>
+    </div>
+</div>
+
+<div class="imp-buttons">
+  <div>
+    <button type="button" class="btn btn-dark client-send">Submit for Review</button>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button mat-dialog-close class="btn btn-dark">Close</button>
+  </div>
+</div>

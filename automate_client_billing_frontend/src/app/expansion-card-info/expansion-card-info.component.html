@@ -1,0 +1,27 @@
+<div class="card-whole">
+  <div class="card-info">
+    <div class="employee-id">
+      <span class="label-info">Employee Id</span>
+      <br>
+      <span class="content-info">  {{employeeData.employeeId}}</span>
+    </div>
+    <div class="client-info">
+      <span class="label-info">Employee Name</span>
+      <br>
+      <span class="content-info">{{employeeData.employeeName}}</span>
+    </div>
+    <div class="total-employee-info">
+      <span class="label-info">Designation</span>
+      <br>
+      <span class="content-info">{{employeeData.designation}}</span>
+    </div>
+    <div class="button-info">
+      <button type="button" class="btn btn-info" (click)="openDialog()">
+        <div class="inner-button">
+          View
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+

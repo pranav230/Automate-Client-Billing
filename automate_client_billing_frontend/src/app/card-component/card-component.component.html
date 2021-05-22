@@ -1,0 +1,67 @@
+<ngx-spinner type="ball-spin-clockwise-fade" size="medium"></ngx-spinner>
+
+<div class="filter">
+  <div class="left">
+    <input type="month" id="start" name="start" class="broad bar1"
+       min="2010-03"  max="{{calender}}" [(ngModel)]="calenderValue">
+    <button type="button" (click)="loadPageAccordingMonth()" class="btn btn-dark bar">Sort</button>
+  </div>
+  <div class="right1">
+    <div class="input-group inp1">
+      <input type="search" [(ngModel)]="searchValue" (ngModelChange)="changePaginatorOnSearch()" class="form-control rounded broad bar1" placeholder="Search..." aria-label="Search"
+        aria-describedby="search-addon" />
+      <button type="button"  class="btn btn-dark bar">Search</button>
+    </div>
+  </div>
+</div>
+
+<div class="card-container">
+  <div class="property-card" *ngFor="let pro of projects | filter:searchValue | paginate: {itemsPerPage:4,currentPage:p,id:'paginateHome'}">
+    <div class="property-image"></div>
+    <div class="property-description">
+      <div class="details-flex">
+        <div class="details pad">
+          <div class="heading">Project</div>
+          <div class="para">{{ pro.projectName }}</div>
+        </div>
+        <div class="details">
+          <div class="heading">Client</div>
+          <div class="para">{{ pro.clientName }}</div>
+        </div>
+      </div>
+      <div class="info">
+        <div class="emp">
+          <div class="heavy heading ">
+            Manager Status
+          </div>
+          <div class="right-al stat">
+            {{pro.paymentStatus[0]}}
+          </div>
+        </div>
+        <div class="emp">
+          <div class="heavy heading">
+            Payment Status
+          </div>
+          <div class="right-al stat">
+            {{pro.paymentStatus[1]}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="paginator1">
+  <pagination-controls id="paginateHome" autoHide="true" responsive="true" (pageChange)="p=$event" class="homepage-paginator"></pagination-controls>
+</div>
+
+<footer class="bg-light text-center text-lg-start">
+  <!-- Copyright -->
+  <div class="text-center p-3" style="background-color: white;">
+    © 2021 Copyright:
+    <a class="text-dark" href="https://hashedin.com/">Hashedin.com</a>
+  </div>
+  <!-- Copyright -->
+</footer>
+
+
+

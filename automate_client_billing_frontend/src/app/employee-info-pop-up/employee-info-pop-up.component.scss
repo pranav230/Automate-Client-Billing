@@ -1,0 +1,30 @@
+.mat-dialog-container{
+  background-color: white;
+  color: black;
+}
+
+.employee-info{
+  display: flex;
+  flex-direction: column;
+}
+
+.employee-label{
+  font-size: 1rem;
+}
+
+.employee-body{
+  font-size: 1.3rem;
+  margin-left: 1.2rem;
+}
+
+.employee-info{
+  margin-top: 0.5rem;
+}
+
+.employee-main{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+

@@ -1,0 +1,189 @@
+.head-details{
+  // display: flex;
+  // flex-direction: column;
+  // margin: 7% 5% 0 5%;
+  margin-top: 2%;
+}
+
+.main-header1{
+  background-color: #f5f5f5;
+  color: #007bff;
+  font-weight: bold;
+  border: 5px solid #f1f1f1;
+  // position: absolute;
+  top: 7vw;
+  /* transform: translate(-50%, -50%); */
+  // width: 80%;
+  padding: 1vw;
+  margin: 0 2% 0 2%;
+  text-align: center;
+  .header-custom1{
+    // font-style: italic;
+    font-size: 2.5em;
+    line-height: 1.5;
+  }
+}
+
+.alert-style{
+  position: fixed;
+  margin: 1% 0 0 70%;
+}
+
+.top-detail{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 2%;
+}
+
+.top-detail-1{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 2%;
+  margin-top: 2%;
+  line-height: 2rem;
+}
+
+.sub-top{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2%;
+}
+
+.title-bold{
+  font-size: large;
+  font-weight: bold;
+}
+
+.middle{
+  text-align: center;
+  padding-top: 0.5rem;
+}
+
+.time-sheet-info{
+  display: grid;
+  grid-template-columns: 9% 12% auto;
+  padding-top: 1rem;
+}
+
+.time-sheet-name{
+  font-weight: bold;
+  text-align: center;
+}
+
+.cal-width{
+  width: 18%;
+  display: inline;
+}
+
+.cal-align{
+  padding-top: 0.6rem;
+}
+
+
+th{
+  font-size: 18px;
+  font-weight: bold;
+  width: 150px;
+  text-align: center;
+  padding: 10px 5px;
+}
+td{
+  font-size: 15px;
+  width: 150px;
+  text-align: center;
+  padding: 10px 5px;
+}
+
+.row-color:nth-child(odd) {
+  background-color: #d3eafa;
+}
+
+.table-row{
+  text-align: center;
+}
+
+tr{
+  text-align: center;
+}
+
+.main-table{
+  background-color: #f6fbff;
+  margin: 3rem 1rem 1rem 2rem;
+}
+
+.input-width{
+  width: 40%;
+
+}
+
+.total-payment{
+  font-size: 1.4rem;
+  padding: 1rem;
+}
+
+.total-payment-header{
+  font-weight: bold;
+}
+
+.input-width-gst{
+  width: 15%;
+
+}
+
+.comment-box{
+  margin: 0 2% 2% 2%;
+}
+
+.button-section{
+  display: flex;
+  justify-content: space-evenly;
+  padding-bottom: 2rem;
+}
+
+// #toast-container{
+//   position: fixed;
+//   z-index: 99999;
+
+// }
+
+// #toast-container>div{
+//   position: relative;
+//   width: 18.75rem;
+//   padding: 15px 15px 15px 50px;
+//   margin: 0 0 6px;
+//   overflow: hidden;
+//   background-repeat: no-repeat;
+//   background-position: 15px center;
+//   background-color: #14e66a;
+//   box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
+//   -webkit-box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
+//   opacity: 0.8;
+//   margin-top: 40px;
+// }
+
+// .md-toast-top-right{
+//   top:20px;
+//   right: 12px;
+// }
+
+// .swal2-popup{
+//   width: 20em;
+// }
+
+// .alert-custom{
+//   width: 200px;
+// }
+
+.swal2-show {
+  height: 10px !important;
+}
+
+
+
+
+
+
+

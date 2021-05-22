@@ -1,0 +1,131 @@
+stages:
+  - build
+  - deploy
+
+build_job:
+  image: node:12-alpine
+  stage: build
+  before_script:
+    - echo "Installing NPM Dependencies and building Angular Application"
+  script:
+    - export CLIENT_ID=$CLIENT_ID
+    - export CLIENT_SECRET=$CLIENT_SECRET
+    - npm install 
+    - npm install -g @angular/cli
+    - ng build --prod --output-hashing none
+  tags:
+    - frontend
+  only:
+    - master
+  cache:
+    key: install-cache
+    paths:
+      - node_modules/
+  artifacts:
+    paths:
+      - dist/
+
+gcloud_deploy:
+  image: google/cloud-sdk:alpine
+  stage: deploy
+  dependencies: 
+    - build_job
+  tags:
+    - frontend
+  only:
+    - master
+  before_script:
+  - "echo ${CI_PROJECT_NAME/./-}"
+  - "Servicename=${CI_PROJECT_NAME/./-}"
+  - "echo $Servicename"
+  - "ServiceName=${Servicename//-}"
+  - "echo $ServiceName"
+  - "echo $CI_PROJECT_NAME"
+  - |
+    cat <<EOF >> app.yaml
+    runtime: python27
+    api_version: 1
+    threadsafe: yes
+    service: $Servicename
+    instance_class: B1
+    manual_scaling:
+       instances: 1
+    handlers:
+     - url: /(.+\.js)
+       static_files: dist/TheBillingSystem/\1
+       upload: dist/TheBillingSystem/(.+\.js)
+    
+     - url: /(.+\.css)
+       static_files: dist/TheBillingSystem/\1
+       upload: dist/TheBillingSystem/(.+\.css)
+    
+     - url: /(.+\.png)
+       static_files: dist/TheBillingSystem/\1
+       upload: dist/TheBillingSystem/(.+\.png)
+    
+     - url: /(.+\.jpg)
+       static_files: dist/TheBillingSystem/\1
+       upload: dist/TheBillingSystem/(.+\.jpg)
+    
+     - url: /(.+\.svg)
+       static_files: dist/TheBillingSystem/\1
+       upload: dist/TheBillingSystem/(.+\.svg)
+    
+     - url: /favicon.ico
+       static_files: dist/TheBillingSystem/favicon.ico
+       upload: dist/TheBillingSystem/favicon.ico
+      
+     - url: /(.+\.json)
+       static_files: dist/TheBillingSystem/\1
+       upload: dist/TheBillingSystem/(.+\.json)
+    
+     - url: /(.+)
+       static_files: dist/TheBillingSystem/index.html
+       upload: dist/TheBillingSystem/index.html
+       
+     - url: /
+       static_files: dist/TheBillingSystem/index.html
+       upload: dist/TheBillingSystem/index.html
+       
+     - url: /
+       static_files: dist/TheBillingSystem/index.html
+       upload: dist/TheBillingSystem/index.html
+     - url: /
+       static_dir: dist/TheBillingSystem/
+
+    skip_files:
+     - e2e/
+     - node_modules/
+     - src/
+     - ^(.*/)?\..*$
+     - ^(.*/)?.*\.json$
+     - ^(.*/)?.*\.md$
+     - ^(.*/)?.*\.yaml$
+     - ^LICENSE
+    EOF
+  - "cat app.yaml"
+  - |
+    cat <<EOF >> $CI_PIPELINE_ID.json
+    {
+      "type": "service_account",
+      "project_id": "hu18-groupa-angular",
+      "private_key_id": "$PRIVATE_KEY_ID",
+      "private_key": "$PRIVATE_KEY",
+      "client_email": "huappengine@hu18-groupa-angular.iam.gserviceaccount.com",
+      "client_id": "104726124207565481899",
+      "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+      "token_uri": "https://oauth2.googleapis.com/token",
+      "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+      "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/huappengine%40hu18-groupa-angular.iam.gserviceaccount.com"
+      }
+    EOF
+  - "cat $CI_PIPELINE_ID.json"
+  
+  script:
+  - gcloud auth activate-service-account --key-file $CI_PIPELINE_ID.json
+  - gcloud --project hu18-groupa-angular app deploy --version v1 --appyaml app.yaml
+  - url=$(gcloud app services browse $ServiceName --no-launch-browser --project hu18-groupa-angular)
+  - echo $url
+  
+  after_script:
+  - rm $CI_PIPELINE_ID.json

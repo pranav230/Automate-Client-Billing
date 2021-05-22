@@ -1,0 +1,100 @@
+<ngx-spinner type="ball-spin-clockwise-fade" size="medium"></ngx-spinner>
+
+<div class="payment-body">
+  <div  class="payment-button" #paypal>
+  </div>
+
+  <div class="payment-options" *ngIf="paymentStatus.paymentStatus == 'Pending' ">
+
+      <div class="form-floating comment-box">
+        <label for="floatingTextarea2" class="comment-box-label">Comment</label>
+        <textarea [(ngModel)]="comment" class="form-control"  placeholder="Leave your comment" style="height: 100px" ></textarea>
+      </div>
+      <div class="down-buttons">
+        <button class="btn btn-primary"  data-toggle="modal" data-target="#staticBackdrop">
+          Offline Payment
+        </button>
+        <div class="modal" id="staticBackdrop">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title text-primary" id="staticBackdropLabel">Offline Payment</h1>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <div class="sub-top11">
+                  <div class="label1">
+                    <div class="title-bold1 divide1">
+                      Transaction ID:
+                    </div>
+                    <div >
+                      <input [(ngModel)]="paymentStruct.id" type="text">
+                    </div>
+                  </div>
+                  <div class="label1">
+                    <div class="title-bold1 divide1">
+                      Payment Medium:
+                    </div>
+                    <div >
+                      <input [(ngModel)]="paymentStruct.modeType" type="text">
+                    </div>
+                  </div>
+                  <div class="label1">
+                    <div class="title-bold1 divide1">
+                      Payee Name:
+                    </div>
+                    <div >
+                      <input [(ngModel)]="paymentStruct.payeeName" type="text">
+                    </div>
+                  </div>
+                  <div class="label1">
+                    <div class="title-bold1 divide1">
+                      Date of Payment:
+                    </div>
+                    <div >
+                      <input [(ngModel)]="paymentStruct.timestamp" type="date" style="padding-right: 0.46rem;">
+                    </div>
+                  </div>
+                </div>
+                <div class="sub-top11">
+                  <div class="title-bold1" style="padding-bottom:2%">Comment</div>
+                  <div><textarea [(ngModel)]="comment" class="form-control"  placeholder="Leave your comment" style="height: 100px" ></textarea></div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" (click)="offlinePayment()" class="btn btn-primary">Submit</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="btn btn-danger reject-payment" (click)="rejectThePayment()">&#10006;Reject Payment</button>
+      </div>
+
+
+  </div>
+</div>
+
+
+
+
+
+<!-- <div *ngIf ="paidFor === false">
+  Payment Successful
+</div> -->
+
+<!-- <ng-container *ngIf="!paidFor ; then onPayment; else onResponse">
+</ng-container>
+
+<ng-template #onPayment>
+  <div class="payment-button" #paypal>
+  </div>
+</ng-template>
+
+
+<ng-template #onResponse>
+  <div>
+    Payment Successful
+  </div>
+</ng-template> -->
+

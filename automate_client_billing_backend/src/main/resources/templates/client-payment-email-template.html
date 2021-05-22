@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Template</title>
+    <style>
+         table, th, td {
+            border: 2px solid black;
+            border-collapse: collapse;
+            padding: 10px;
+         }
+    </style>
+</head>
+<body>
+
+<span>
+    This mail is generated for Project <strong th:text="${projectName}"></strong>
+</span>
+
+<center>
+    <span>
+            <h2>ANNEXURE </h2>
+            <h2>Invoice No INV00<span th:text="${id}"></span></h2>
+    </span>
+</center>
+
+<center>
+    <table>
+        <tr style="background-color: #32CD32;">
+            <th>S. No.</th>
+            <th>Name of Hasher</th>
+            <th>Designation</th>
+            <th>Allocation</th>
+            <th>Rate(USD)</th>
+            <th>Hours Billed</th>
+            <th>Total</th>
+        </tr>
+        <tr th:each="employee,it: ${employeeList}">
+            <td th:text="${it.index + 1}"></td>
+            <td th:text="${employee.empName}"></td>
+            <td th:text="${employee.designation}"></td>
+            <td>1</td>
+            <td th:text="${employee.ratePerHour}"></td>
+            <td th:text="${employee.hoursBilled}"></td>
+            <td th:text="${employee.ratePerHour * employee.hoursBilled}"></td>
+        </tr>
+        <tr>
+            <center><td colspan="6" style="background-color: yellow; text-align: center;">Total for <span th:text="${month}"></span> 2021</td></center>
+            <td th:text="${total}"></td>
+        </tr>
+    </table>
+</center>
+
+<center>
+    <br></br>
+    <img src="https://storage.googleapis.com/clientbillingbucket/client.png" style="width:50%"/>
+</center>
+
+<span>
+    <br></br>
+    <p><strong>Comment From Finance Team:</strong> <span th:text="${comment}"></span></p>
+</span>
+
+<button>
+    <a th:href="${link}">Pay</a>
+</button>
+
+</body>
+</html>
