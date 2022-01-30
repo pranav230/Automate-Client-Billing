@@ -8,3 +8,4 @@
 * Email will be sent to the manager and he can edit the details and then sent it back to the finance team.
 * Then Finance team can send the bills to the clients through email.
 * Client then have an option either to pay online through the portal or share the offline payment status or can reject the payment with a message.
+* You will also get notifications about the Client action on the bills.
